@@ -13,7 +13,6 @@ public class Farmer {
     private Long id;
     private String phoneNumber;
     private String password;
-
     public Long getId() {
         return id;
     }

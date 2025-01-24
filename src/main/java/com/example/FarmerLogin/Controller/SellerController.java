@@ -4,10 +4,7 @@ import com.example.FarmerLogin.Repository.SellerRepository;
 import com.example.FarmerLogin.entities.Seller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ import java.util.List;
 
 @RestController//create bean componetnt
 @RequestMapping("/api/seller")//end points use as methods.->maps whole class
+@CrossOrigin(origins = "http://localhost:3000")
 public class SellerController {
 
     @Autowired//to use another class withot creating it

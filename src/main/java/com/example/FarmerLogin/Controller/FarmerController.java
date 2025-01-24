@@ -10,6 +10,7 @@ import java.util.List;
 //handles http requests
 @RestController
 @RequestMapping("/api/farmers")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FarmerController {
 
     @Autowired
@@ -37,14 +38,14 @@ public class FarmerController {
     }
 
     // POST method to retrieve all farmers
-    @PostMapping("/getAll")
+    @GetMapping ("/getAll")
     public List<Farmer> getAllFarmers() {
         return farmerRepository.findAll();  // Returns a list of all farmers
     }
 
     // POST method to retrieve a specific farmer by phone number
     // POST method to retrieve a farmer by phone number
-    @PostMapping("/getByPhone")
+    @GetMapping("/getByPhone")
     public ResponseEntity<Farmer> getFarmerByPhoneNumber(@RequestBody Farmer farmer) {
         Farmer foundFarmer = farmerRepository.findByPhoneNumber(farmer.getPhoneNumber());
         if (foundFarmer != null) {
