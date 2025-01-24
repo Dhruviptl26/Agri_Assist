@@ -1,7 +1,22 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+h1, h2 {
+  color: #2e8b57; /* Green color for headings */
+}
+
+/* App Container */
 .App {
   text-align: center;
 }
 
+/* App Logo Animation */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,6 +28,12 @@
   }
 }
 
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Header */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,11 +49,251 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Global Styles */
+body {
+  background-color: #ffffff;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container Styles */
+.container, .login-container, .register-container, .dashboard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 50px auto;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #2e8b57;
+  text-align: center;
+}
+
+.dashboard {
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Button Styles */
+button, .dashboard-button, .dashboard-link-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #2e8b57;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover, .dashboard-button:hover, .dashboard-link-button:hover {
+  background-color: #276747; /* Darker green */
+}
+
+button[type="button"] {
+  background-color: #4caf50;
+}
+
+button[type="button"]:hover {
+  background-color: #45a049;
+}
+
+.dashboard-link-button {
+  width: 100%;
+  background-color: #2b6cb0;
+}
+
+.dashboard-link-button:hover {
+  background-color: #2c5282;
+}
+
+/* Input and Label Styles */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #40916c;
+  outline: none;
+  box-shadow: 0 0 5px rgba(56, 161, 105, 0.5);
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #555;
+}
+
+/* Error and Success Message Styles */
+.error-message, .register-container .error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.success-message {
+  color: #40916c;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Dashboard Section */
+.dashboard-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.dashboard-section h2 {
+  font-size: 1.8rem;
+  color: #2c7a7b;
+  margin-bottom: 10px;
+}
+
+.dashboard-section p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.dashboard-list {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-list li {
+  margin: 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container, .login-container, .register-container, .dashboard {
+    width: 100%;
+    padding: 15px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .dashboard-section h2 {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .dashboard h1 {
+    font-size: 2rem;
+  }
+
+  .dashboard p {
+    font-size: 0.9rem;
+  }
+}
+/* Home.css */
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-image: url('./assets/image1.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.home-container h1 {
+  color: #ffffff; /* Dark Green */
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.home-container p {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #276747;
+  padding: 5px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.role-button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+  width: 250px;
+}
+
+.role-button:hover {
+  transform: scale(1.05); /* Slight hover effect */
+}
+
+.farmer {
+  background-color: #38a169; /* Green */
+  color: white;
+}
+
+.farmer:hover {
+  background-color: #2f855a; /* Darker green */
+}
+
+.seller {
+  background-color: #3182ce; /* Blue */
+  color: white;
+}
+
+.seller:hover {
+  background-color: #2b6cb0; /* Darker blue */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 15px;
+  }
+
+  .role-button {
+    width: 100%;
+    font-size: 1rem;
   }
 }
