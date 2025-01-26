@@ -25,7 +25,7 @@ function Dashboard() {
 
       {/* Weather Component */}
       <section className="dashboard-section">
-            
+            <WetherApi></WetherApi>
       </section>
       
 
@@ -51,6 +51,9 @@ function Dashboard() {
           </li>
         </ul>
       </section>
+      <footer>
+        
+      </footer>
     </div>
   );
 }

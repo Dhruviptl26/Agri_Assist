@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function WetherApi() {
   const [weatherData, setWeatherData] = useState(null);
-  const [city, setCity] = useState('London'); // Default city
+  const [city, setCity] = useState('Nadiad'); // Default city
 
   useEffect(() => {
     fetchWeather(city);

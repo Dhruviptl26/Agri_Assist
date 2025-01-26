@@ -14,8 +14,8 @@ function Home() {
 
   return (
     <div className="home-container">
-      <h1>Welcome to Digital Farming Assistant</h1>
-      <p>Please select your role to register:</p>
+      <h1 className="msg">Welcome to Digital Farming Assistant</h1>
+      <p>Please select your role to register :</p>
       <div className="button-container">
         <button onClick={goToFarmerRegistration} className="role-button farmer">
           Farmer Registration

@@ -37,7 +37,9 @@ function Register() {
       const response = await axios.post("http://localhost:8080/api/farmers/register", data);
 
       // If registration is successful
-      setMessage(response.data);  // Assuming the backend returns a success message like "Registration successful"
+      
+      setMessage(response.data);
+      window.location.href="/login";  // Assuming the backend returns a success message like "Registration successful"
     } catch (error) {
       console.error("Error during registration:", error);
       setMessage("An error occurred during registration. Please try again later.");

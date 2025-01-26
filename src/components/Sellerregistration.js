@@ -21,12 +21,13 @@ function SellerRegister() {
 
     const data = { phoneNumber, password };
 
-    try {
-      const response = await axios.post("http://localhost:8080/api/seller/register", data);
-      if (response.status === 200) {
-        setSuccessMessage("Registration successful for seller!");
-        setErrorMessage("");
-      }
+  
+      try {
+        const response = await axios.post("http://localhost:8080/api/seller/register", data);
+  
+        // If registration is successful
+        setSuccessMessage(response.data);
+        window.location.href="/slogin";
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage("Phone number already registered. Try logging in.");

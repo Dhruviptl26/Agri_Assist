@@ -13,8 +13,7 @@ function SellerLogin() {
     try {
       const response = await axios.post("http://localhost:8080/api/seller/login", data);
       if (response.status === 200) {
-        alert("Login successful!");
-        window.location.href = "/dashbord"; // Redirect after login
+        window.location.href = "/rdashbord"; // Redirect after login
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
