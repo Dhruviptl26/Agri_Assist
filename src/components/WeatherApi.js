@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function WetherApi() {
+function WeatherApi() {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState('Nadiad'); // Default city
 
@@ -49,4 +49,4 @@ function WetherApi() {
       
 }
 
-export default WetherApi;
+export default WeatherApi;

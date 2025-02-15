@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import '../App.css';
+import {  useNavigate } from "react-router-dom";
 function Login() {
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState("");
-
+  const navigate = useNavigate();
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -28,7 +29,8 @@ function Login() {
       if (response.status === 200) {
         <p>Login successful!</p>
         console.log(userId,password);
-        window.location.href="/dashbord";
+       // window.location.href="/dashbord";
+      navigate("/dashbord");
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {

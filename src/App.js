@@ -7,7 +7,7 @@ import Dashbord from './components/Dashbord';
 import Home from './components/Home';
 import SellerLogin from './components/Sellerlogin';
 import SellerRegister from './components/Sellerregistration';
-import WetherApi from './components/WetherApi';
+import WeatherApi from './components/WeatherApi';
 import Login from './components/Login';
 import Rdashbord from './components/Rdashbord';
 function App() {
@@ -21,7 +21,7 @@ function App() {
       <Route path ="/register" element={<Register></Register>}></Route>
       <Route path ="/dashbord" element={<Dashbord></Dashbord>}></Route>
       <Route path ="/sregister" element={<SellerRegister></SellerRegister>}></Route>
-      <Route path ="/WetherApi" element={<WetherApi></WetherApi>}></Route>
+      <Route path ="/WetherApi" element={<WeatherApi></WeatherApi>}></Route>
       <Route path ="/rdashbord" element={<Rdashbord></Rdashbord>}></Route>
       </Routes>
      
