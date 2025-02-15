@@ -7,40 +7,52 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-//rest api -> to use another server
-//handles httprequest -> gat post delete put
-
-@RestController//create bean componetnt
-@RequestMapping("/api/seller")//end points use as methods.->maps whole class
+@RestController
+@RequestMapping("/api/seller")
 @CrossOrigin(origins = "http://localhost:3000")
 public class SellerController {
 
-    @Autowired//to use another class withot creating it
+    @Autowired
     private SellerRepository sellerRepository;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody Seller seller) {
-        if (sellerRepository.findByPhoneNumber(seller.getPhoneNumber()) != null) {
+        Optional<Seller> existingSeller = sellerRepository.findByPhoneNumber(seller.getPhoneNumber());
+        if (existingSeller.isPresent()) {
             return ResponseEntity.status(400).body("Phone number already registered");
         }
-      sellerRepository.save(seller);
-        return ResponseEntity.ok("Registration successful for seller ");
+        sellerRepository.save(seller);
+        return ResponseEntity.ok("Registration successful for seller");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Seller seller) {
-        Seller existingFarmer = sellerRepository.findByPhoneNumber(seller.getPhoneNumber());
+    public ResponseEntity<Seller> login(@RequestBody Seller seller) {
+        Optional<Seller> existingSeller = sellerRepository.findByPhoneNumber(seller.getPhoneNumber());
 
-        if (existingFarmer != null && existingFarmer.getPassword().equals(seller.getPassword())) {
-            return ResponseEntity.ok("Login successful");
+        if (existingSeller.isPresent() && existingSeller.get().getPassword().equals(seller.getPassword())) {
+            System.out.println("Seller found");
+            return ResponseEntity.ok(existingSeller.get());
+
         } else {
-            return ResponseEntity.status(401).body("Invalid phone number or password");
+            return ResponseEntity.status(401).body(null);
         }
     }
-    @PostMapping("/getAll")
+
+    @GetMapping("/getAll")
     public List<Seller> getAllSeller() {
-        return sellerRepository.findAll();  // Returns a list of all seller
+        return sellerRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Seller> getSellerById(@PathVariable Long id) {
+        Optional<Seller> seller = sellerRepository.findById(id);
+        return seller.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(404).body(null));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+        return ResponseEntity.ok("Logout successful");
+    }
 }

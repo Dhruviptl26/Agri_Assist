@@ -1,41 +1,75 @@
 package com.example.FarmerLogin.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.*;
+import java.util.List;
 
-
-@Entity//entity class to conect the database
+@Entity // Entity class to connect to the database
 public class Farmer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Ensures auto-increment behavior
     private Long id;
+
     private String phoneNumber;
     private String password;
-    public Long getId() {
-        return id;
-    }
+    private double balance = 0.0; // 🆕 Added balance field
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "farmer", cascade = CascadeType.ALL) // Relationship with purchases
+    private List<Purchase> purchases;
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    // ✅ Constructors
+    public Farmer() {}
 
-    public void setPhoneNumber(String phoneNumber) {
+    public Farmer(String phoneNumber, String password, double balance) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
+        this.balance = balance;
     }
 
+    // ✅ Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public double getBalance() { return balance; }
+    public void setBalance(double balance) { this.balance = balance; }
+
+    public List<Purchase> getPurchases() { return purchases; }
+    public void setPurchases(List<Purchase> purchases) { this.purchases = purchases; }
+
+    // ✅ Purchase-related methods
+    public void addBalance(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+        } else {
+            throw new IllegalArgumentException("Amount must be greater than zero.");
+        }
+    }
+
+    public boolean deductBalance(double amount) {
+        if (amount > 0 && this.balance >= amount) {
+            this.balance -= amount;
+            return true;
+        }
+        return false; // Insufficient funds
+    }
+
+    public boolean purchaseCrop(Crop crop, int quantity) {
+        double totalPrice = crop.getPrice() * quantity;
+
+        if (crop.getQuantity() < quantity) {
+            throw new IllegalArgumentException("Not enough crop quantity available.");
+        }
+
+        if (deductBalance(totalPrice)) {
+            crop.setQuantity(crop.getQuantity() - quantity);
+            return true;
+        }
+        return false;
+    }
 }

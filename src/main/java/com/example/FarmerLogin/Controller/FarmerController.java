@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
-//handles http requests
+import java.util.Map;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/farmers")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -18,40 +21,55 @@ public class FarmerController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody Farmer farmer) {
-        if (farmerRepository.findByPhoneNumber(farmer.getPhoneNumber()) != null) {
+        Optional<Farmer> existingFarmer = farmerRepository.findByPhoneNumber(farmer.getPhoneNumber());
+        if (existingFarmer.isPresent()) {
             return ResponseEntity.status(400).body("Phone number already registered");
         }
         farmerRepository.save(farmer);
         return ResponseEntity.ok("Registration successful");
     }
 
-    // POST method for login
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Farmer farmer) {
-        Farmer existingFarmer = farmerRepository.findByPhoneNumber(farmer.getPhoneNumber());
+    public ResponseEntity<Farmer> login(@RequestBody Farmer farmer) {
+        Optional<Farmer> existingFarmer = farmerRepository.findByPhoneNumber(farmer.getPhoneNumber());
 
-        if (existingFarmer != null && existingFarmer.getPassword().equals(farmer.getPassword())) {
-            return ResponseEntity.ok("Login successful");
+        if (existingFarmer.isPresent() && existingFarmer.get().getPassword().equals(farmer.getPassword())) {
+            return ResponseEntity.ok(existingFarmer.get());
         } else {
-            return ResponseEntity.status(401).body("Invalid phone number or password");
+            return ResponseEntity.status(401).body(null);
         }
     }
 
-    // POST method to retrieve all farmers
-    @GetMapping ("/getAll")
+    @GetMapping("/getAll")
     public List<Farmer> getAllFarmers() {
-        return farmerRepository.findAll();  // Returns a list of all farmers
+        return farmerRepository.findAll();
     }
 
-    // POST method to retrieve a specific farmer by phone number
-    // POST method to retrieve a farmer by phone number
-    @GetMapping("/getByPhone")
-    public ResponseEntity<Farmer> getFarmerByPhoneNumber(@RequestBody Farmer farmer) {
-        Farmer foundFarmer = farmerRepository.findByPhoneNumber(farmer.getPhoneNumber());
-        if (foundFarmer != null) {
-            return ResponseEntity.ok(foundFarmer); // Return farmer details if found
+    @GetMapping("/{id}")
+    public ResponseEntity<Farmer> getFarmerById(@PathVariable Long id) {
+        Optional<Farmer> farmer = farmerRepository.findById(id);
+        return farmer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(404).body(null));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, String>> logout() {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Logout successful");
+        return ResponseEntity.ok(response);
+    }
+    @PutMapping("/farmer/{id}/recharge")
+    public ResponseEntity<?> rechargeFarmerBalance(@PathVariable Long id, @RequestParam double amount) {
+        Optional<Farmer> farmerOpt = farmerRepository.findById(id);
+        if (farmerOpt.isPresent()) {
+            Farmer farmer = farmerOpt.get();
+            if (amount <= 0) {
+                return ResponseEntity.badRequest().body("Invalid amount!");
+            }
+            farmer.setBalance(farmer.getBalance() + amount);
+            farmerRepository.save(farmer);
+            return ResponseEntity.ok("Balance updated! New balance: " + farmer.getBalance());
         } else {
-            return ResponseEntity.status(404).body(null); // Return 404 if not found
+            return ResponseEntity.status(404).body("Farmer not found!");
         }
     }
 
