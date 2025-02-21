@@ -24,21 +24,36 @@ function Rdashbord() {
     }
   };
 
-  // ✅ Add Crop to Backend
   const handleAddCrop = async () => {
+    const cropData = {
+      name: newCrop.name,
+      description: newCrop.description,
+      price: Number(newCrop.price),  // Convert string to number
+      quantity: Number(newCrop.quantity),  // Convert string to number
+    };
+  
+    console.log("Sending Crop Data:", cropData); // Debugging
+  
     try {
-      const response = await axios.post("http://localhost:8080/api/crops", newCrop);
-      setCrops([...crops, response.data]); // Update state
-      setNewCrop({ name: "", description: "", price: "", quantity: "" }); // Clear form
+      const response = await axios.post("http://localhost:8080/api/crops/add", cropData, {
+        headers: { "Content-Type": "application/json" },
+      });
+  
+      console.log("Response:", response.data);
     } catch (error) {
-      console.error("Error adding crop:", error);
+      console.error("Error adding crop:", error.response?.data || error);
     }
   };
+  
+  
+  
+  
 
   // ✅ Remove Crop from Backend
   const handleDeleteCrop = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/api/crops/${id}`);
+      console.log(id);
       setCrops(crops.filter((crop) => crop.id !== id)); // Remove from state
     } catch (error) {
       console.error("Error deleting crop:", error);
@@ -47,7 +62,7 @@ function Rdashbord() {
 
   return (
     <div>
-      <h1>🌾 Seller Crop Dashboard</h1>
+      <h1> Seller Crop Dashboard</h1>
 
       {/* ✅ Show Crops Section */}
       <div>
@@ -57,7 +72,7 @@ function Rdashbord() {
             {crops.map((crop) => (
               <li key={crop.id}>
                 <strong>{crop.name}</strong> - {crop.description} - ₹{crop.price} - {crop.quantity}kg
-                <button onClick={() => handleDeleteCrop(crop.id)}>❌ Remove</button>
+                <button onClick={() => handleDeleteCrop(crop.id)}> Remove</button>
               </li>
             ))}
           </ul>
@@ -68,7 +83,7 @@ function Rdashbord() {
 
       {/* ✅ Add Crop Section */}
       <div>
-        <h2>➕ Add New Crop</h2>
+        <h2> Add New Crop</h2>
         <input
           type="text"
           placeholder="Crop Name"
@@ -93,7 +108,7 @@ function Rdashbord() {
           value={newCrop.quantity}
           onChange={(e) => setNewCrop({ ...newCrop, quantity: e.target.value })}
         />
-        <button onClick={handleAddCrop}>✅ Add Crop</button>
+        <button onClick={handleAddCrop}>Add Crop</button>
       </div>
     </div>
   );

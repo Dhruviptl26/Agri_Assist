@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import '../App.css'
-function SellerLogin() {
+import '../App.css';
+
+const SellerLogin = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -13,14 +14,14 @@ function SellerLogin() {
     try {
       const response = await axios.post("http://localhost:8080/api/seller/login", data);
       if (response.status === 200) {
-        window.location.href = "/rdashbord"; // Redirect after login
+        window.location.href = "/rdashbord";
       }
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setErrorMessage("Invalid phone number or password.");
-      } else {
-        setErrorMessage("An error occurred. Please try again.");
-      }
+      setErrorMessage(
+        error.response && error.response.status === 401
+          ? "Invalid phone number or password."
+          : "An error occurred. Please try again."
+      );
     }
   };
 
@@ -29,30 +30,15 @@ function SellerLogin() {
       <h1>Seller Login</h1>
       <form onSubmit={handleLogin}>
         <label>Phone Number:</label>
-        <input
-          type="text"
-          placeholder="Enter phone number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          required
-        />
+        <input type="text" placeholder="Enter phone number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
         <label>Password:</label>
-        <input
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <input type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button type="submit">Login</button>
-        <p>
-          Don't have an account?{" "}
-          <a href="/sregister">Register Here</a>
-        </p>
+        <p>Don't have an account? <a href="/sregister">Register Here</a></p>
       </form>
     </div>
   );
-}
+};
 
 export default SellerLogin;

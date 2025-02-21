@@ -16,31 +16,37 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page reload
-
+  
     const data = {
-      phoneNumber: userId, // Make sure to match the backend field name
+      phoneNumber: userId, // Match backend field name
       password: password,
     };
-
+  
     try {
-      const response = await axios.post("http://localhost:8080/api/farmers/login", data);
-      
-
+      const response = await axios.post(
+        "http://localhost:8080/api/farmers/login",
+        JSON.stringify(data), // Convert data to JSON string
+        {
+          headers: {
+            "Content-Type": "application/json", // ✅ Fix: Ensure correct content type
+          },
+        }
+      );
+  
       if (response.status === 200) {
-        <p>Login successful!</p>
-        console.log(userId,password);
-       // window.location.href="/dashbord";
-      navigate("/dashbord");
+        localStorage.setItem("farmer", JSON.stringify(response.data)); // Store user details
+        navigate("/dashboard"); // Navigate to Dashboard
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        <p>Invalid phone number or password. Please try again.</p>
+        alert("Invalid phone number or password. Please try again.");
       } else {
-        console.error("Error during login:", error);
-       <p>An error occurred while logging in. Please try again later.</p>
+        console.error("Login Error:", error);
+        alert("An error occurred while logging in. Please try again later.");
       }
     }
   };
+  
 
   const redirectToRegister = () => {
     window.location.href = "/register"; // Redirect to the registration page
