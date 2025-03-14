@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import '../App.css';
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function Login() {
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState("");
   const navigate = useNavigate();
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -16,26 +17,26 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page reload
-  
+
     const data = {
       phoneNumber: userId, // Match backend field name
       password: password,
     };
-  
+
     try {
       const response = await axios.post(
         "http://localhost:8080/api/farmers/login",
-        JSON.stringify(data), // Convert data to JSON string
+        data, // Send data as JSON object
         {
           headers: {
-            "Content-Type": "application/json", // ✅ Fix: Ensure correct content type
+            "Content-Type": "application/json",
           },
         }
       );
-  
+
       if (response.status === 200) {
-        localStorage.setItem("farmer", JSON.stringify(response.data)); // Store user details
-        navigate("/dashboard"); // Navigate to Dashboard
+        localStorage.setItem("user", JSON.stringify(response.data)); // Store user details
+        navigate("/mdb"); // Navigate to Dashboard
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -46,16 +47,14 @@ function Login() {
       }
     }
   };
-  
 
   const redirectToRegister = () => {
-    window.location.href = "/register"; // Redirect to the registration page
+    navigate("/register");
   };
 
   return (
     <div className="farmer-login">
-      <h1>Login </h1>
-
+      <h1>Login</h1>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <label>Phone No</label>

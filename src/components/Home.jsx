@@ -9,7 +9,7 @@ function Home() {
   };
 
   const goToSellerRegistration = () => {
-    navigate("/slogin");
+    navigate("/blogin");
   };
 
   return (
@@ -21,7 +21,7 @@ function Home() {
           Farmer Registration
         </button>
         <button onClick={goToSellerRegistration} className="role-button seller">
-          Seller Registration
+          Buyer Registration
         </button>
       </div>
     </div>

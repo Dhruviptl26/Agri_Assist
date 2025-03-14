@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
 import WeatherApi from "./WeatherApi";
 import axios from "axios";
 
@@ -10,15 +9,15 @@ function Dashboard() {
   const [showProfile, setShowProfile] = useState(false);
   const [crops, setCrops] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newCrop, setNewCrop] = useState({ name: "", price: "", image: null });
+  const [updateCrop, setUpdateCrop] = useState(null);
   const [quantity, setQuantity] = useState({});
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/crops")
-      .then(response =>{setCrops(response.data)} )
+      .then(response => { setCrops(response.data) })
       .catch(error => console.error("Error fetching crops:", error))
       .finally(() => setLoading(false));
-     
-
   }, []);
 
   useEffect(() => {
@@ -96,7 +95,62 @@ function Dashboard() {
         console.error("Order failed:", error.response?.data || error.message);
         alert("Order failed: " + (error.response?.data?.error || "Unknown error"));
       });
-};
+  };
+
+  const handleCropChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setNewCrop(prev => ({ ...prev, image: files[0] }));
+    } else {
+      setNewCrop(prev => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleCropSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", newCrop.name);
+    formData.append("price", newCrop.price);
+    formData.append("image", newCrop.image);
+
+    axios.post("http://localhost:8080/api/crops", formData)
+      .then(response => {
+        setCrops([...crops, response.data]);
+        setNewCrop({ name: "", price: "", image: null });
+      })
+      .catch(error => console.error("Error uploading crop:", error));
+  };
+
+  const handleRemoveCrop = (cropId) => {
+    axios.delete(`http://localhost:8080/api/crops/${cropId}`)
+      .then(() => {
+        setCrops(crops.filter(crop => crop.id !== cropId));
+      })
+      .catch(error => console.error("Error removing crop:", error));
+  };
+
+  const handleUpdateCrop = (crop) => {
+    setUpdateCrop(crop);
+    setNewCrop({ name: crop.name, price: crop.price, image: null });
+  };
+
+  const handleUpdateSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", newCrop.name);
+    formData.append("price", newCrop.price);
+    if (newCrop.image) {
+      formData.append("image", newCrop.image);
+    }
+
+    axios.put(`http://localhost:8080/api/crops/${updateCrop.id}`, formData)
+      .then(response => {
+        setCrops(crops.map(crop => crop.id === updateCrop.id ? response.data : crop));
+        setUpdateCrop(null);
+        setNewCrop({ name: "", price: "", image: null });
+      })
+      .catch(error => console.error("Error updating crop:", error));
+  };
 
   return (
     <div className="dashboard-container">
@@ -125,30 +179,64 @@ function Dashboard() {
       </section>
 
       <section className="dashboard-section">
-        <h2>Available Crops</h2>
+        <h2>Upload New Crop</h2>
+        <form onSubmit={updateCrop ? handleUpdateSubmit : handleCropSubmit}>
+          <div>
+            <label>
+              Crop Name:
+              <input
+                type="text"
+                name="name"
+                value={newCrop.name}
+                onChange={handleCropChange}
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Price:
+              <input
+                type="number"
+                name="price"
+                value={newCrop.price}
+                onChange={handleCropChange}
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Image:
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleCropChange}
+              />
+            </label>
+          </div>
+          <button type="submit">{updateCrop ? "Update Crop" : "Upload Crop"}</button>
+        </form>
+      </section>
+
+      <section className="dashboard-section">
+        <h2>Uploaded Crops</h2>
         {loading ? <p>Loading crops...</p> : (
           <div className="crop-grid">
             {crops.map(crop => (
               <div key={crop.id} className="crop-card">
                 <h3>{crop.name}</h3>
                 <p><strong>Price:</strong> ₹{crop.price}</p>
-                <p><strong>Stock:</strong> {crop.quantity}</p>
-                <div className="quantity-controls">
-                  <button onClick={() => handleQuantityChange(crop.id, -1)}>-</button>
-                  <span>{quantity[crop.id] || 0}</span>
-                  <button onClick={() => handleQuantityChange(crop.id, 1)}>+</button>
+                <img src={crop.imageUrl} alt={crop.name} className="crop-image" />
+                <div className="crop-actions">
+                  <button onClick={() => handleUpdateCrop(crop)}>Update</button>
+                  <button onClick={() => handleRemoveCrop(crop.id)}>Remove</button>
                 </div>
               </div>
             ))}
           </div>
         )}
-        <button 
-          className="buy-button"
-          onClick={buyCrops} 
-          disabled={Object.values(quantity).every(qty => qty === 0)}
-        >
-          Buy Selected Crops
-        </button>
       </section>
 
       <footer className="dashboard-footer">
