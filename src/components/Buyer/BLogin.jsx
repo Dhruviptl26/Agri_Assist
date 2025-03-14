@@ -53,6 +53,7 @@ function BLogin() {
   };
 
   return (
+    <body className="login-body">
     <div className="login-container">
       <h1>Buyer Login</h1>
       <form onSubmit={handleSubmit}>
@@ -78,6 +79,7 @@ function BLogin() {
         </button>
       </form>
     </div>
+    </body>
   );
 }
 

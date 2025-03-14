@@ -98,6 +98,7 @@ const BuyCrops = () => {
   };
 
   return (
+  
     <div className="buy-crops-container">
       {view === 'main' && (
         <>
@@ -329,6 +330,7 @@ const BuyCrops = () => {
         </>
       )}
     </div>
+    
   );
 };
 

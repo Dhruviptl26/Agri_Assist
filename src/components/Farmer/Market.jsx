@@ -122,10 +122,11 @@ const Market = () => {
   ];
 
   return (
+    <div className="market-page">
     <div className="market-container">
       <div className="background-image"></div>
       <div className="market-header">
-        <h1>Market</h1>
+        <h3>Market</h3>
       </div>
       {view === 'main' && (
         <>
@@ -318,7 +319,7 @@ const Market = () => {
                 </select>
               </>
             )}
-            <label htmlFor="price">Price per weight unit ($)</label>
+            <label htmlFor="price">Price per weight unit</label>
             <input type="number" id="price" name="price" step="0.01" value={formData.price} onChange={handleInputChange} required />
 
             <label htmlFor="totalWeight">Total Weight (kg)</label>
@@ -349,6 +350,7 @@ const Market = () => {
           </button>
         </div>
       )}
+    </div>
     </div>
   );
 };

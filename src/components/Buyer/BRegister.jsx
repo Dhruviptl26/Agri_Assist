@@ -61,6 +61,7 @@ function BRegister() {
   };
 
   return (
+    <body className="register-body">
     <div className="register-container">
       <h1>Buyer Register</h1>
       <form onSubmit={handleSubmit}>
@@ -102,6 +103,7 @@ function BRegister() {
         </button>
       </form>
     </div>
+    </body>
   );
 }
 

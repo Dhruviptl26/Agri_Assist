@@ -140,7 +140,7 @@ function MasterDashboard() {
         <div className="profile-section">
           <img src={user.profileImage} alt="Profile" className="profile-photo" />
           <span>{user.name}</span>
-          <h3 style={{ color: 'white' }}>Digital Market Space</h3>
+          <h1 >Digital Market Space</h1>
         </div>
       </nav>
       <div className="content">

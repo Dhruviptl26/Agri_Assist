@@ -24,6 +24,7 @@ function BuyerDashboard() {
   };
 
   return (
+    <div className="dashboard-body">
     <div className="dashboard-container">
       <header className="dashboard-header">
         <h1>Welcome to AgriAssist!</h1>
@@ -53,6 +54,7 @@ function BuyerDashboard() {
       <footer className="dashboard-footer">
         <p>© 2025 AgriAssist. All rights reserved.</p>
       </footer>
+    </div>
     </div>
   );
 }
