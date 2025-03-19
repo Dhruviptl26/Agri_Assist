@@ -8,7 +8,8 @@ import wheatImage from '../assets/wheat.png';
 import peanutImage from '../assets/peanutImage.jpg';
 import almondImage from '../assets/almondImage.jpg';
 import cashewImage from '../assets/cashewImage.jpg';
-
+import BajaraImage from '../assets/bajara.jpg';
+import JowarImage from '../assets/jowar.jpg';
 const BuyCrops = () => {
   const [view, setView] = useState('main');
   const [crops, setCrops] = useState([]);
@@ -51,15 +52,19 @@ const BuyCrops = () => {
 
   const handleSearch = () => {
     try {
+      console.log(crops.productType)
       const matchingCrops = crops.filter(crop => {
         return (
           crop.name.toLowerCase() === selectedCrop.toLowerCase() &&
-          crop.productType.toLowerCase() === formData.productType.toLowerCase() &&
+          crop.productType.toLowerCase() === formData.productType.toLowerCase()  &&
           crop.region.toLowerCase() === formData.region.toLowerCase()
         );
+        
+        
       });
 
       if (matchingCrops.length === 0) {
+        console.log(crops.productType)
         setErrorMessage('No matching crops found.');
         setSearchResults([]);
         return;
@@ -128,6 +133,15 @@ const BuyCrops = () => {
             <div className="crop-circle" onClick={() => handleCropClick('Wheat')}>
               <img src={wheatImage} alt="Wheat" className="crop-image" />
               <p>Wheat</p>
+            </div>
+            <div className="crop-circle" onClick={() => handleCropClick('Bajra')}>
+              <img src={BajaraImage} alt="Bajara" className="crop-image" />
+              <p>Bajara</p>
+    
+            </div>
+            <div className="crop-circle" onClick={() => handleCropClick('Jowar')}>
+              <img src={JowarImage} alt="jowar" className="crop-image" />
+              <p>Jowar</p>
             </div>
           </div>
           <button onClick={() => setView('main')} className="buy-crops-button">
@@ -215,6 +229,79 @@ const BuyCrops = () => {
                 </select>
               </>
             )}
+            {selectedCrop === 'Bajra' && (
+              <>
+                <label htmlFor="productType">Product Type</label>
+                <select id="productType" name="productType" onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="pearlmillet">Pearl Millet</option>
+                  <option value="foxtailmillet">Foxtail Millet</option>
+                  <option value="finger">Finger Millet</option>
+                  <option value="proso">Proso Millet</option>
+                </select>
+
+                <label htmlFor="variety">Variety</label>
+                <select id="variety" name="variety" value={formData.variety} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="desi">Desi</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+
+                <label htmlFor="processingType">Processing Type</label>
+                <select id="processingType" name="processingType" value={formData.processingType} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="hulled">Hulled</option>
+                  <option value="unhulled">Unhulled</option>
+                  <option value="flour">Flour</option>
+                  <option value="flakes">Flakes</option>
+                </select>
+
+                <label htmlFor="genetics">Genetics</label>
+                <select id="genetics" name="genetics" value={formData.genetics} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="gmo">GMO</option>
+                  <option value="nongmo">Non-GMO</option>
+                </select>
+              </>
+            )}
+
+            {selectedCrop === 'Jowar' && (
+              <>
+                <label htmlFor="productType">Product Type</label>
+                <select id="productType" name="productType" onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="whitejowar">White Jowar</option>
+                  <option value="redjowar">Red Jowar</option>
+                  <option value="yellowjowar">Yellow Jowar</option>
+                  <option value="sweetjowar">Sweet Sorghum</option>
+                </select>
+
+                <label htmlFor="variety">Variety</label>
+                <select id="variety" name="variety" value={formData.variety} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="maldandi">Maldandi</option>
+                  <option value="hybrid">Hybrid</option>
+                  <option value="forage">Forage Sorghum</option>
+                </select>
+
+                <label htmlFor="processingType">Processing Type</label>
+                <select id="processingType" name="processingType" value={formData.processingType} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="whole">Whole Grain</option>
+                  <option value="flour">Flour</option>
+                  <option value="flakes">Flakes</option>
+                  <option value="bran">Bran</option>
+                </select>
+
+                <label htmlFor="genetics">Genetics</label>
+                <select id="genetics" name="genetics" value={formData.genetics} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="gmo">GMO</option>
+                  <option value="nongmo">Non-GMO</option>
+                </select>
+              </>
+            )}
+
             {selectedCrop === 'Almond' && (
               <>
                 <label htmlFor="shellType">Shell Type</label>
@@ -280,7 +367,7 @@ const BuyCrops = () => {
                   <option value="driedraw">Dried Raw</option>
                 </select>
 
-                <label htmlFor="kernalPerKg">Kernal Per Kg</label>
+                <label htmlFor="kernalPerKg">Kernal Per quintali</label>
                 <select id="kernalPerKg" name="kernalPerKg" onChange={handleInputChange}>
                   <option value="W320">W320</option>
                   <option value="W240">W240</option>
@@ -288,7 +375,7 @@ const BuyCrops = () => {
                 </select>
               </>
             )}
-            <label htmlFor="totalWeight">Total Weight (kg)</label>
+            <label htmlFor="totalWeight">Total Weight (q)</label>
             <input type="number" id="totalWeight" name="totalWeight" step="0.01" onChange={handleInputChange} />
 
             <label htmlFor="region">Region of Origin</label>
@@ -310,13 +397,14 @@ const BuyCrops = () => {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
           {searchResults.length > 0 && (
+            <div className="serch-results-container">
             <div className="search-results">
               {searchResults.map((result) => (
                 <div key={result.id} className="search-result">
                   <h3>{result.name}</h3>
                   <img src={`http://localhost:8080${result.imageUrl}`} alt={result.name} className="crop-image" />
                   <p>Price: ${result.price}</p>
-                  <p>Product Type: {result.productType}</p>
+                  <p>Product Type: {result.productType}</p>{console.log(result.productType)}
                   <p>Variety: {result.variety}</p>
                   <p>Genetics: {result.genetics}</p>
                   <p>Weight: {result.totalWeight} kg</p>
@@ -325,7 +413,9 @@ const BuyCrops = () => {
                 </div>
               ))}
             </div>
+            </div>
           )}
+          
           <button onClick={() => setView(selectedCrop === 'Rice' || selectedCrop === 'Corn' || selectedCrop === 'Wheat' ? 'grains' : 'beans')} className="back-button">Back</button>
         </>
       )}

@@ -309,6 +309,7 @@ h2 {
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+
 /* Blurred Overlay */
 .market-page::before {
   content: "";
@@ -386,9 +387,30 @@ h3 {
   text-align: center;
  
 }
-
-
 /* Form */
+.collage-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+/* Images Styling */
+.collage-container img {
+  width: 80px;  /* Adjust size as needed */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.collage-container img:hover {
+  transform: scale(1.1);
+}
 form {
   display: flex;
   flex-direction: column;
@@ -427,6 +449,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 10px; /* Adds space between buttons */
 }
 
 button:hover {
@@ -435,6 +458,9 @@ button:hover {
 
 
 
+.market-header{
+  margin-top: 150px;
+}
 /* Submit Button */
 
 
@@ -747,7 +773,7 @@ button:hover {
   font-weight: bold;
   text-transform: uppercase; /* Makes text stand out */
   color: #ffffff; /* Ensures high contrast */
-  background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+  background: rgba(111, 165, 109, 0.6); /* Dark semi-transparent background */
   padding: 10px 20px;
   border-radius: 10px; /* Smooth rounded edges */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds depth */
@@ -785,7 +811,8 @@ button:hover {
 }
 
 .role-button.farmer {
-  background-color: #2e8b57; /* Green background */
+  background-color: #2e8b57; 
+  margin-top: -400px;/* Green background */
 }
 
 .role-button.seller {
@@ -866,7 +893,7 @@ button:hover {
   /* Reset all styles */
   margin-bottom: 10px; /* Reduced margin */
   font-size: 2.5em; /* Bigger font */
-  color: #2e8b57; /* Green text */
+  /* Green text */
   font-weight: bold;
   text-transform: uppercase;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Stylish shadow */
@@ -1129,13 +1156,12 @@ button:hover {
   background: url('./components/assets/bgimage.jpg') no-repeat center center/cover;
   color: #2e8b57; /* Green text */
   padding: 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative; /* Allows scrolling */
   width: 100%;
-  height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Prevent scrolling */
+  min-height: 100vh; /* Allows content expansion */
+  overflow: auto; /* Enables scrolling */
 }
+
 
 /* Adding a slight blur effect for better readabilit
 
@@ -1146,7 +1172,7 @@ button:hover {
 }
 
 .buy-crops-button {
-  padding: 10px 20px;
+  padding: 5px 10px; /* Adjusted padding for better appearance */
   border: 1px solid #2e8b57; /* Green border */
   border-radius: 5px;
   background-color: #ffffff; /* White background */
@@ -1154,12 +1180,17 @@ button:hover {
   font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block; /* Makes the width fit the content */
+  width: auto; /* Ensures the button width is only as wide as its content */
+  text-align: center; /* Centers text inside */
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
 .buy-crops-button:hover {
   background-color: #2e8b57; /* Green background */
   color: #ffffff; /* White text */
 }
+
 
 .crops-grid {
   display: flex;
@@ -1211,19 +1242,25 @@ button:hover {
 }
 
 .search-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #2e8b57; /* Green background */
-  color: #ffffff; /* White text */
-  font-size: 1em;
+  padding: 5px 15px; /* Adjusted padding */
+  font-size: 0.9em; /* Slightly smaller font */
+  border-radius: 3px; /* Less rounded */
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: auto; /* Fit content */
+  min-width: 80px; /* Optional: Prevent too small button */
+  display: inline-block; /* Ensure width fits content */
+  text-align: center;
+  white-space: nowrap; /* Prevent text wrapping */
+  background-color: #2e8b57; /* Green background */
+  color: #ffffff; /* White text */
+  border: none;
 }
 
 .search-button:hover {
   background-color: #276747; /* Darker green */
 }
+
 
 .error-message {
   color: red;
@@ -1242,37 +1279,57 @@ button:hover {
 .search-result p {
   color: #2e8b57; /* Green text */
 }
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Center vertically */
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Center vertically */
+  text-align: center;
+}
+
+.buy-button, .back-button {
+  padding: 5px 15px; /* Adjusted padding */
+  font-size: 0.9em; /* Smaller font */
+  border-radius: 3px; /* Less rounded */
+  margin: 10px; /* Space between buttons */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: auto; /* Adjust width to content */
+  min-width: 80px; /* Optional: Prevent too small buttons */
+  display: inline-block; /* Ensure width fits content */
+  text-align: center;
+  white-space: nowrap; /* Prevent wrapping */
+}
 
 .buy-button {
-  padding: 10px 20px;
+  background-color: #2e8b57; /* Green */
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
-  background-color: #2e8b57; /* Green background */
-  color: #ffffff; /* White text */
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .buy-button:hover {
-  background-color: #276747; /* Darker green */
+  background-color: #276747;
 }
 
 .back-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: 1px solid #2e8b57; /* Green border */
-  border-radius: 5px;
-  background-color: #ffffff; /* White background */
-  color: #2e8b57; /* Green text */
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #ffffff;
+  color: #2e8b57;
+  border: 1px solid #2e8b57;
 }
 
 .back-button:hover {
-  background-color: #2e8b57; /* Green background */
-  color: #ffffff; /* White text */
+  background-color: #2e8b57;
+  color: #ffffff;
 }
 
 
@@ -1286,7 +1343,6 @@ button:hover {
   padding: 10px; /* Adds some spacing */
 }
 
-/* Button styling for a clean and modern look */
 .button-container button {
   background-color: #2e8b57; /* Green shade */
   color: #fff; /* White text */
@@ -1296,7 +1352,11 @@ button:hover {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: inline-block; /* Ensures button width adjusts to content */
+  width: auto; /* Allows width to fit content */
+  min-width: fit-content; /* Prevents unnecessary stretching */
 }
+
 
 .button-container button:hover {
   background-color: #246b47; /* Darker green on hover */
@@ -1353,13 +1413,7 @@ button:hover {
   color: red;
 }
 
-.search-button, .buy-button, .back-button {
-  margin-top: 20px;
-  display: block; /* Ensures it takes full width if needed */
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
+
 
 /*location css */
 .location-container {

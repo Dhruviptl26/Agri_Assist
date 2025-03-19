@@ -35,9 +35,9 @@ export const Location = () => {
         
         <div className="location-details">
           <p>Product: {searchResult?.name}</p>
-          <p>Price: ${searchResult?.price} per kg</p>
-          <p>Total Weight: {formData?.totalWeight} kg</p>
-          <p>Total Cost: ${calculatedPrice?.toFixed(2)}</p>
+          <p>Price: {searchResult?.price} per quintal</p>
+          <p>Total Weight: ₹{formData?.totalWeight} quintal</p>
+          <p>Total Cost: ₹{calculatedPrice?.toFixed(2)}</p>
         </div>
 
         <div className="location-input">

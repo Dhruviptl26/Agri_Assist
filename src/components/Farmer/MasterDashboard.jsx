@@ -24,7 +24,7 @@ function MasterDashboard() {
     peanutForm: '',
     size: '',
     productStatus: '',
-    kernalPerKg: '',
+    kernalPerQuintal: '',
   });
 
   const fetchCrops = useCallback(async () => {
@@ -121,6 +121,7 @@ function MasterDashboard() {
       productType: crop.productType,
       variety: crop.variety,
       genetics: crop.genetics,
+      processingType: crop.processingType,
       price: crop.price,
       totalWeight: crop.totalWeight,
       region: crop.region,
@@ -130,7 +131,7 @@ function MasterDashboard() {
       peanutForm: crop.peanutForm,
       size: crop.size,
       productStatus: crop.productStatus,
-      kernalPerKg: crop.kernalPerKg,
+      kernalPerQuintal: crop.kernalPerKg ,
     });
   };
 
@@ -167,8 +168,9 @@ function MasterDashboard() {
               <p>Product Type: {crop.productType}</p>
               <p>Variety: {crop.variety}</p>
               <p>Genetics: {crop.genetics}</p>
-              <p>Price: ${crop.price} per kg</p>
-              <p>Total Weight: {crop.totalWeight} kg</p>
+              <p>Processing Type: {crop.processingType}</p>
+              <p>Price: ₹{crop.price} per quintal</p>
+              <p>Total Weight: {crop.totalWeight} quintal</p>
               <p>Region: {crop.region}</p>
               <button onClick={() => handleEditCrop(crop)} className="edit-button">Edit</button>
               <button onClick={() => handleDeleteCrop(crop.id)} className="delete-button">Delete</button>
@@ -184,15 +186,15 @@ function MasterDashboard() {
               <p>Product Type: {bean.productType}</p>
               <p>Variety: {bean.variety}</p>
               <p>Genetics: {bean.genetics}</p>
-              <p>Price: ${bean.price} per kg</p>
-              <p>Total Weight: {bean.totalWeight} kg</p>
+              <p>Price: ₹{bean.price} per quintal</p>
+              <p>Total Weight: {bean.totalWeight} quintal</p>
               <p>Region: {bean.region}</p>
               <p>Shell Type: {bean.shellType}</p>
               <p>Almond Form: {bean.almondForm}</p>
               <p>Peanut Form: {bean.peanutForm}</p>
               <p>Size: {bean.size}</p>
               <p>Product Status: {bean.productStatus}</p>
-              <p>Kernal Per Kg: {bean.kernalPerKg}</p>
+              {/* <p>Kernal Per quintal: {bean.kernalPerQuintal}</p> */}
               <button onClick={() => handleEditCrop(bean)} className="edit-button">Edit</button>
               <button onClick={() => handleDeleteCrop(bean.id)} className="delete-button">Delete</button>
             </div>
@@ -213,11 +215,12 @@ function MasterDashboard() {
 
               <label htmlFor="genetics">Genetics</label>
               <input type="text" id="genetics" name="genetics" value={formData.genetics} onChange={handleInputChange} />
-
-              <label htmlFor="price">Price per weight unit ($)</label>
+              <label htmlFor='processingType'>Processing Type</label>
+              <input type='text' id='processingType' name='processingType' value={formData.processingType} onChange={handleInputChange} />
+              <label htmlFor="price">Price per weight unit (₹)</label>
               <input type="number" id="price" name="price" step="0.01" value={formData.price} onChange={handleInputChange} />
 
-              <label htmlFor="totalWeight">Total Weight (kg)</label>
+              <label htmlFor="totalWeight">Total Weight (quintal)</label>
               <input type="number" id="totalWeight" name="totalWeight" step="0.01" value={formData.totalWeight} onChange={handleInputChange} />
 
               <label htmlFor="region">Region of Origin</label>
@@ -238,8 +241,8 @@ function MasterDashboard() {
               <label htmlFor="productStatus">Product Status</label>
               <input type="text" id="productStatus" name="productStatus" value={formData.productStatus} onChange={handleInputChange} />
 
-              <label htmlFor="kernalPerKg">Kernal Per Kg</label>
-              <input type="text" id="kernalPerKg" name="kernalPerKg" value={formData.kernalPerKg} onChange={handleInputChange} />
+              {/* <label htmlFor="kernalPerKg">Kernal Per quintal</label>
+              <input type="text" id="kernalPerKg" name="kernalPerKg" value={formData.kernalPerKg} onChange={handleInputChange} /> */}
 
               <label htmlFor="image">Upload Image</label>
               <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} />

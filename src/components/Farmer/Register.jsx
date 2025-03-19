@@ -47,7 +47,7 @@ function Register() {
   };
 
   return (
-    <body className="registration">
+    <div className="registration">
     <div className="registration">
       <h1 className="Regi">Register</h1>
       <div className="container">
@@ -87,7 +87,7 @@ function Register() {
         {message && <p>{message}</p>}
       </div>
     </div>
-    </body>
+    </div>
   );
 }
 

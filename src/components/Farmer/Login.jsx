@@ -53,7 +53,7 @@ function Login() {
   };
 
   return (
-    <body className="farmer-login">
+    <div className="farmer-login">
     <div className="farmer-login">
       <h1>Login</h1>
       <div className="container">
@@ -87,7 +87,7 @@ function Login() {
         </form>
       </div>
     </div>
-    </body>
+    </div>
   );
 }
 

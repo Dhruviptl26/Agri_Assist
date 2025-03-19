@@ -13,7 +13,7 @@ import Market from './components/Farmer/Market';
 import BuyCrops from './components/Buyer/BuyCrops';
 import RazorpayPayment from './components/Payment/RazorpayPayment';
 import {Location} from './components/LocationProvider/Location';
-import Hello from './Hello';
+
 
 function App() {
   return (
@@ -31,7 +31,6 @@ function App() {
         <Route path="/buy" element={<BuyCrops/>}/>
         <Route path="/payment" element={<RazorpayPayment/>}/>
         <Route path="/location" element={<Location/>}/>
-        <Route path="/hello" element={<Hello/>}/>
       </Routes>
     </Router>
   );

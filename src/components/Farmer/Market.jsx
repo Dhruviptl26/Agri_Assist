@@ -8,7 +8,8 @@ import wheatImage from '../assets/wheat.png';
 import peanutImage from '../assets/peanutImage.jpg';
 import almondImage from '../assets/almondImage.jpg';
 import cashewImage from '../assets/cashewImage.jpg';
-
+import BajaraImage from '../assets/bajara.jpg';
+import JowarImage from '../assets/jowar.jpg';
 const Market = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -28,7 +29,7 @@ const Market = () => {
     peanutForm: 'all',
     size: 'all',
     productStatus: 'all',
-    kernalPerKg: 'all',
+    kernalPerQuintal: 'all',
   });
 
   useEffect(() => {
@@ -113,6 +114,8 @@ const Market = () => {
     { name: 'Rice', image: riceImage },
     { name: 'Corn', image: cornImage },
     { name: 'Wheat', image: wheatImage },
+    {name : 'Bajra', image: BajaraImage},
+    {name : 'Jowar',image : JowarImage}
   ];
 
   const beans = [
@@ -236,6 +239,79 @@ const Market = () => {
                 </select>
               </>
             )}
+              {selectedCrop.name === 'Bajra' && (
+              <>
+                <label htmlFor="productType">Product Type</label>
+                <select id="productType" name="productType" value={formData.productType} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="pearlmillet">Pearl Millet</option>
+                  <option value="foxtailmillet">Foxtail Millet</option>
+                  <option value="finger">Finger Millet</option>
+                  <option value="proso">Proso Millet</option>
+                </select>
+
+                <label htmlFor="variety">Variety</label>
+                <select id="variety" name="variety" value={formData.variety} onChange={handleInputChange}>
+                  <option value="all">All</option>
+                  <option value="desi">Desi</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+
+                  <label htmlFor="processingType">Processing Type</label>
+                  <select id="processingType" name="processingType" value={formData.processingType} onChange={handleInputChange}>
+                    <option value="all">All</option>
+                    <option value="hulled">Hulled</option>
+                    <option value="unhulled">Unhulled</option>
+                    <option value="flour">Flour</option>
+                    <option value="flakes">Flakes</option>
+                  </select>
+
+                  <label htmlFor="genetics">Genetics</label>
+                  <select id="genetics" name="genetics" value={formData.genetics} onChange={handleInputChange}>
+                    <option value="all">All</option>
+                    <option value="gmo">GMO</option>
+                    <option value="nongmo">Non-GMO</option>
+                  </select>
+                </>
+              )}
+
+              {selectedCrop.name === 'Jowar' && (
+                <>
+                  <label htmlFor="productType">Product Type</label>
+                  <select id="productType" name="productType" value={formData.productType} onChange={handleInputChange}>
+                    <option value="all">All</option>
+                    <option value="whitejowar">White Jowar</option>
+                    <option value="redjowar">Red Jowar</option>
+                    <option value="yellowjowar">Yellow Jowar</option>
+                    <option value="sweetjowar">Sweet Sorghum</option>
+                  </select>
+
+                  <label htmlFor="variety">Variety</label>
+                  <select id="variety" name="variety" value={formData.variety} onChange={handleInputChange}>
+                    <option value="all">All</option>
+                    <option value="maldandi">Maldandi</option>
+                    <option value="hybrid">Hybrid</option>
+                    <option value="forage">Forage Sorghum</option>
+                  </select>
+
+                  <label htmlFor="processingType">Processing Type</label>
+                  <select id="processingType" name="processingType" value={formData.processingType} onChange={handleInputChange}>
+                    <option value="all">All</option>
+                    <option value="whole">Whole Grain</option>
+                    <option value="flour">Flour</option>
+                    <option value="flakes">Flakes</option>
+                    <option value="bran">Bran</option>
+                  </select>
+
+                  <label htmlFor="genetics">Genetics</label>
+                  <select id="genetics" name="genetics" value={formData.genetics} onChange={handleInputChange}>
+                    <option value="all">All</option>
+                    <option value="gmo">GMO</option>
+                    <option value="nongmo">Non-GMO</option>
+                  </select>
+                </>
+              )}
+
             {selectedCrop.name === 'Almond' && (
               <>
                 <label htmlFor="shellType">Shell Type</label>
@@ -310,20 +386,28 @@ const Market = () => {
                   <option value="driedraw">Dried Raw</option>
                 </select>
 
-                <label htmlFor="kernalPerKg">Kernal Per Kg</label>
+                {/* <label htmlFor="kernalPerKg">Kernal Per Kg</label>
                 <select id="kernalPerKg" name="kernalPerKg" value={formData.kernalPerKg} onChange={handleInputChange}>
                   <option value="all">All</option>
                   <option value="W320">W320</option>
                   <option value="W240">W240</option>
                   <option value="W180">W180</option>
-                </select>
+                </select> */}
               </>
             )}
-            <label htmlFor="price">Price per weight unit</label>
+            <label htmlFor="price">Price (₹)</label>
             <input type="number" id="price" name="price" step="0.01" value={formData.price} onChange={handleInputChange} required />
-
-            <label htmlFor="totalWeight">Total Weight (kg)</label>
-            <input type="number" id="totalWeight" name="totalWeight" step="0.01" value={formData.totalWeight} onChange={handleInputChange} required />
+                <label htmlFor="totalWeight">Total Weight (q)</label>
+                  <input
+                    type="number"
+                    id="totalWeight"
+                    name="totalWeight"
+                    step="0.01"
+                    value={formData.totalWeight}
+                    onChange={handleInputChange}
+                    placeholder="Enter total weight"
+                    required
+                  />
 
             <label htmlFor="region">Region of Origin</label>
             <select id="region" name="region" value={formData.region} onChange={handleInputChange}>
