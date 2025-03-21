@@ -10,6 +10,8 @@ import almondImage from '../assets/almondImage.jpg';
 import cashewImage from '../assets/cashewImage.jpg';
 import BajaraImage from '../assets/bajara.jpg';
 import JowarImage from '../assets/jowar.jpg';
+import cropimage from "../assets/cropimage.jpg";
+import dryfruitsimage from "../assets/dryfruits.jpg";
 const Market = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -126,23 +128,34 @@ const Market = () => {
 
   return (
     <div className="market-page">
+      <header class="market-header1">
+        <h1>Welcome to the Market</h1>
+</header>
     <div className="market-container">
       <div className="background-image"></div>
       <div className="market-header">
-        <h3>Market</h3>
       </div>
       {view === 'main' && (
         <>
           <div className="button-container">
+            <div className="button-cards">
+              <div className="button-card">
             <button onClick={handleGrainsClick} className="market-button">
+               <img src={cropimage} alt="Market" className="button-card-image" />
               Grains
             </button>
+            </div>
+            <div className="button-card">
             <button onClick={handleBeansClick} className="market-button">
+            <img src={dryfruitsimage} alt="Market" className="button-card-image" />
               Beans
             </button>
+            </div>
+            </div>
           </div>
         </>
       )}
+      
       {view === 'grains' && (
         <>
           <h1>Grains</h1>
@@ -435,6 +448,7 @@ const Market = () => {
         </div>
       )}
     </div>
+  
     </div>
   );
 };
