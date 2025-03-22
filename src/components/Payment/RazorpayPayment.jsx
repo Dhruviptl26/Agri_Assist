@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import "../../App.css"
 
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {

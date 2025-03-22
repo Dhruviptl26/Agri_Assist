@@ -1,0 +1,81 @@
+/* Home Page Styling */
+.home-container {
+  text-align: center;
+  padding: 50px;
+  background: url("../assets/image1.png") no-repeat center center/cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Ensures text is visible on the background */
+}
+
+/* Add a slight background overlay for better readability */
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: -1;
+}
+
+.msg {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff; /* White text */
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #f0f0f0; /* Light text */
+  margin-bottom: 20px;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Role Buttons */
+.role-button {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  text-align: center;
+  min-width: 200px;
+}
+
+.farmer {
+  background-color: #2e8b57; /* Green */
+  color: white;
+}
+
+.seller {
+  background-color: #ffa500; /* Orange */
+  color: white;
+}
+
+.role-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.farmer:hover {
+  background-color: #276747;
+}
+
+.seller:hover {
+  background-color: #cc8400;
+}

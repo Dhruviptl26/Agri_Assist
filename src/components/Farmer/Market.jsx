@@ -1,6 +1,7 @@
 // Market.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "../Style/Market.css"
 import { useNavigate } from 'react-router-dom';
 import riceImage from '../assets/rice.png';
 import cornImage from '../assets/corn.png';
@@ -128,7 +129,7 @@ const Market = () => {
 
   return (
     <div className="market-page">
-      <header class="market-header1">
+      <header className="market-header1">
         <h1>Welcome to the Market</h1>
 </header>
     <div className="market-container">
@@ -158,7 +159,7 @@ const Market = () => {
       
       {view === 'grains' && (
         <>
-          <h1>Grains</h1>
+          <h1 style={{ textAlign: "center" }}>Grains</h1>
           <div className="crops-grid">
             {crops.map((crop, index) => (
               <div key={index} className="crop-circle" onClick={() => handleCropClick(crop)}>
@@ -174,7 +175,7 @@ const Market = () => {
       )}
       {view === 'beans' && (
         <>
-          <h1>Beans</h1>
+          <h1 style={{ textAlign: "center" }}>Beans</h1>
           <div className="crops-grid">
             {beans.map((bean, index) => (
               <div key={index} className="crop-circle" onClick={() => handleCropClick(bean)}>

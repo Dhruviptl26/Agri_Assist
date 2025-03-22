@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import marketImage from '../assets/market.png';
 import weatherImage from '../assets/weather.jpg';
-
+import "../Style/MasterDashboard.css";
 function MasterDashboard() {
   const user = JSON.parse(localStorage.getItem('user')) || { name: 'User', profileImage: '/default-profile.png', id: null };
   const [uploadedCrops, setUploadedCrops] = useState([]);
@@ -32,6 +32,7 @@ function MasterDashboard() {
     
     try {
       const response = await axios.get(`http://localhost:8080/api/crops/farmer/${user.id}`);
+      console.log('Crops:', response.data);
       const crops = response.data.filter(crop => 
         crop.name !== 'Peanut' && crop.name !== 'Almond' && crop.name !== 'Cashew'
       );
@@ -47,6 +48,7 @@ function MasterDashboard() {
     try {
       const response = await axios.get(`http://localhost:8080/api/crops/farmer/${user.id}`)
       .catch(error => console.error('API Error:', error.response?.status, error.response?.data));
+      console.log('Beans:', response.data);
           const beans = response.data.filter(crop => 
         crop.name === 'Peanut' || crop.name === 'Almond' || crop.name === 'Cashew'
       );

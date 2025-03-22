@@ -1,0 +1,232 @@
+/* General Page Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* Enable scrolling for the whole page */
+html, body {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Beautiful Background Image */
+.master-dashboard {
+  background: url('../assets/sellimg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Smaller Navbar */
+.navbar {
+  background: rgba(25, 138, 30, 0.9); /* Dark Green with Transparency */
+  color: white;
+  padding: 10px 15px; /* Reduced padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 20px; /* Smaller header text */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.navbar .links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px; /* Slightly smaller font */
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .links a:hover {
+  text-decoration: underline;
+  color: #c8e6c9;
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 40px; /* Reduced size */
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-right: 8px;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  padding: 20px;
+  max-height: calc(100vh - 60px); /* Adjusted height based on smaller Navbar */
+  overflow-y: auto;
+}
+
+/* Smaller Market & Weather Info */
+.market-info, .weather-info {
+  font-size: 14px; /* Reduced font size */
+  color: #444; /* Softer text color */
+  text-align: center;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+/* Stylish Dashboard Cards */
+.dashboard-cards {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card img {
+  width: 100%;
+  height: 160px; /* Better fit */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* Crop Cards */
+.crop-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.crop-card {
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.crop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.crop-card img {
+  width: 100%;
+  height: 140px; /* Better fit */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* Stylish Form */
+.form-container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px; /* Smaller labels */
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px; /* Smaller input text */
+}
+
+/* Buttons */
+.button, .edit-button, .delete-button {
+  padding: 8px 12px; /* Reduced padding */
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px; /* Smaller button text */
+  transition: all 0.3s ease-in-out;
+}
+
+.button {
+  background-color: #2e7d32;
+  color: white;
+}
+
+.button:hover {
+  background-color: #1b5e20;
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #388E3C;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+/* Dashboard Card Styling */
+.dashboard-card h2, .crop-card h2 {
+  font-size: 16px; /* Smaller font size */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}

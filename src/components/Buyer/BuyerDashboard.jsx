@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import '../../App.css'; // Correct path to the App.css file
+import "../../App.css"
+ // Correct path to the App.css file
 
 function BuyerDashboard() {
   const navigate = useNavigate();

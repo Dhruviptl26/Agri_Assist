@@ -13,7 +13,7 @@ import Market from './components/Farmer/Market';
 import BuyCrops from './components/Buyer/BuyCrops';
 import RazorpayPayment from './components/Payment/RazorpayPayment';
 import {Location} from './components/LocationProvider/Location';
-
+//import "./App.css";
 
 function App() {
   return (
