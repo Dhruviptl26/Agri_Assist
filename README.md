@@ -1,6 +1,8 @@
 # 🌾 AgriAssist - Empowering Farmers & Buyers
 
-![AgriAssist Logo](https://github.com/Dhruviptl26/Agri_Assist/blob/main/Logo.png)
+<p align="center">
+  <img src="https://github.com/Dhruviptl26/Agri_Assist/blob/main/Logo.png" alt="AgriAssist Logo" width="150" style="border-radius: 50%;">
+</p>
 
 Welcome to **AgriAssist**, an innovative platform that connects **farmers and buyers** by providing a seamless experience for selling and purchasing crops. This platform also offers **weather updates** to help farmers make informed decisions.
 
