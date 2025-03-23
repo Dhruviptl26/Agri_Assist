@@ -78,7 +78,7 @@ We welcome contributions! To contribute:
 ---
 
 ## 🏆 Developer
-- **Dhruv Patel** 👉 [GitHub Profile](https://github.com/Dhruviptl26)
+- **Dhruvi Patel** 👉 [GitHub Profile](https://github.com/Dhruviptl26)
 
 ---
 
