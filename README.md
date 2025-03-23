@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# 🌾 AgriAssist - Empowering Farmers & Buyers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![AgriAssist Logo](https://raw.githubusercontent.com/Dhruviptl26/Agri_Assist/main/logo.png)
 
-## Available Scripts
+Welcome to **AgriAssist**, an innovative platform that connects **farmers and buyers** by providing a seamless experience for selling and purchasing crops. This platform also offers **weather updates** to help farmers make informed decisions.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🌟 Features
+✅ **Farmer Dashboard** – List and manage crops for sale 🌾  
+✅ **Buyer Portal** – Browse and purchase available crops 🛒  
+✅ **Weather Insights** – Get real-time weather updates ☀️🌧️  
+✅ **Secure Payments** – Integrated **Razorpay** billing system 💳  
+✅ **User Authentication** – Secure login and registration 🔒  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
+| **Technology** | **Description** |
+|--------------|----------------|
+| 🎨 **Frontend** | React.js (Located in `main` branch) |
+| ⚙️ **Backend** | Spring Boot (Located in `backend` branch) |
+| 🗄️ **Database** | MySQL |
+| 💳 **Payment** | Razorpay (Frontend only, no backend integration) |
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Getting Started
+### **Prerequisites**
+Ensure you have the following installed before proceeding:
+- 🟢 Node.js & npm
+- ☕ Java JDK 22
+- 🛢️ MySQL
+- 🏗️ Spring Boot
 
-### `npm run build`
+### **Installation Steps**
+1️⃣ **Clone the repository:**
+   ```sh
+   git clone https://github.com/Dhruviptl26/Agri_Assist.git
+   ```
+2️⃣ **Navigate to the project directory:**
+   ```sh
+   cd AgriAssist
+   ```
+3️⃣ **Frontend Setup:**
+   ```sh
+   git checkout main
+   cd frontend
+   npm install
+   npm start
+   ```
+4️⃣ **Backend Setup:**
+   ```sh
+   git checkout backend
+   ```
+   - Configure database settings in `application.properties`
+   - Run the Spring Boot application:
+   ```sh
+   mvn spring-boot:run
+   ```
+5️⃣ **Access the application at:**
+   ```sh
+   http://localhost:3000
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🤝 Contribution Guidelines
+We welcome contributions! To contribute:
+1. **Fork** the repository 🍴
+2. **Create a feature branch** 🛠️
+3. **Commit your changes** 💾
+4. **Push to your branch** 🚀
+5. **Submit a pull request** 🔄
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🏆 Developer
+- **Dhruv Patel** 👉 [GitHub Profile](https://github.com/Dhruviptl26)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📜 License
+This project is licensed under the **MIT License**. Feel free to use, modify, and contribute! 🎉
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+✨ *Happy Farming & Trading!* 🚜🌾
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
